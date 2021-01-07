@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
 
+/// Note: package:equatable is used to enable value comparisons of the User object.
 /// The User class is extending equatable in order to override equality comparisons
 /// so that we can compare different instances of User by value.
 class User extends Equatable {
