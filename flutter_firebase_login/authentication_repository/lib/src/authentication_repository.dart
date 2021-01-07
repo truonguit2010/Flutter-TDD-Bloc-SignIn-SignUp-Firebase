@@ -65,6 +65,33 @@ class AuthenticationRepository {
     }
   }
 
+  /// Signs in with the provided [email] and [password].
+  ///
+  /// Throws a [LogInWithEmailAndPasswordFailure] if an exception occurs.
+  Future<void> logInWithEmailAndPassword({@required String email, @required String password}) async {
+      assert(email != null && password != null);
+      try {
+        await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      } on Exception {
+        throw LogInWithEmailAndPasswordFailure();
+      }
+  }
+
+  /// Signs out the current user which will emit
+  /// [User.empty] from the [user] Stream.
+  ///
+  /// Throws a [LogOutFailure] if an exception occurs.
+  Future<void> logOut() async {
+    try {
+      await Future.wait([
+        _firebaseAuth.signOut(),
+        _googleSignIn.signOut()
+      ]);
+    } on Exception {
+      throw LogOutFailure();
+    }
+  }
+
 }
 
 extension on firebase_auth.User {
