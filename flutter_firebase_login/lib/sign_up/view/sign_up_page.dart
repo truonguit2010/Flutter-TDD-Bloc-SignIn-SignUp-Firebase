@@ -4,6 +4,7 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_login/sign_up/cubit/sign_up_cubit.dart';
+import 'package:flutter_firebase_login/sign_up/sign_up.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage ({Key key}) : super(key: key);
@@ -22,7 +23,7 @@ class SignUpPage extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: BlocProvider<SignUpCubit> (
           create: (_) => SignUpCubit(context.read<AuthenticationRepository>()),
-          child: SignUpPage(),
+          child: SignUpForm(),
         ),
       ),
     );
