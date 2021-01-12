@@ -39,7 +39,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   ///Stream<int> foo() async* {
   ///  for (int i = 0; i < 42; i++) {
   ///    await Future.delayed(const Duration(seconds: 1));
-  ///    yield i;s
+  ///    yield i;
   ///  }
   ///}
   ///This function emits a value every second, that increment every time
