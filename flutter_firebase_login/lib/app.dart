@@ -4,7 +4,9 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_login/authentication/authentication.dart';
+import 'package:flutter_firebase_login/home/view/home_page.dart';
 import 'package:flutter_firebase_login/login/view/login_page.dart';
+import 'package:flutter_firebase_login/splash/splash.dart';
 import 'package:flutter_firebase_login/theme.dart';
 import 'package:flutter_firebase_login/authentication/authentication.dart';
 
@@ -33,7 +35,7 @@ class App extends StatelessWidget {
 class AppView extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return null;
+    return _AppViewState();
   }
 }
 
@@ -54,7 +56,7 @@ class _AppViewState extends State<AppView> {
           listener: (context, state) {
             switch (state.status) {
               case AuthenticationStatus.authenticated:
-//                _navigator.pushAndRemoveUntil(newRoute, (route) => false)
+                _navigator.pushAndRemoveUntil(HomePage.route(), (route) => false);
                 break;
               case AuthenticationStatus.unauthenticated:
                 _navigator.pushAndRemoveUntil(LoginPage.route(), (route) => false);
@@ -66,6 +68,7 @@ class _AppViewState extends State<AppView> {
           child: child,
         );
       },
+      onGenerateRoute: (_) => SplashPage.route(),
     );
   }
 }
